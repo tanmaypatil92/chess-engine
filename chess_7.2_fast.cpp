@@ -2,12 +2,13 @@
 // chess.cpp : Defines the entry point for the console application.
 //
 
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <conio.h>
 #include <iostream>
 #include <math.h>
-#include <graphics.h>
+#include "graphics.h"
 #include <dos.h>
 #include <string.h>
 #include <stdlib.h>
@@ -318,7 +319,7 @@ void modify_board::graphics_display_init()
 void modify_board::graphics_display()
 {
     int i,j;
-    char str[10];
+    char str[20];
     mousehide();
     //cleardevice();
     //grid
@@ -385,6 +386,12 @@ void modify_board::graphics_display()
 		  break;
 	    }
         
+		char str_folder[20];
+		strcpy(str_folder, "pieces/");
+		strcat(str_folder,str);
+		strcpy(str, str_folder);
+
+
         //if(board.at[i][j] != 0)
             display_piece(j,i,str,board.at[i][j]);
         setcolor(WHITE);
@@ -1668,7 +1675,6 @@ void modify_board::next_move()
     unsigned short int tempx,tempy;
     generic_move best_move,comp_move;
     move_status s1;
-    char str[10];
     
     moves++;
     best_move = traverse_all(0,1,MY_INFINITY);
@@ -1770,10 +1776,8 @@ void modify_board::next_move()
 };
 void modify_board::next_move_cpu()
 {
-    unsigned short int tempx,tempy;
     generic_move best_move,comp_move;
     move_status s1;
-    char str[10];
     
     
     // WHITE MOVE
@@ -1850,8 +1854,6 @@ int main()
     setbkcolor(WHITE);
     cleardevice();
     
-    int ch,pts;
-    char str[10];
     modify_board modify;
     modify.set_start_pos();
    

@@ -227,7 +227,6 @@ public:
 	
 	int defuzzify(char *out_name)
 	{
-		int total_out_val,total_DOF;
 		float DOF,sum_DOF=0,sum_DOM=0,min_DOM = 65534;
 		char token[NAME_LENGTH];
 
@@ -327,6 +326,6 @@ public:
 		}
 		//ELSE RETURN WEIGHTED AVERAGE
 
-		return (sum_DOF/sum_DOM);
+		return (int)(sum_DOF/sum_DOM);
 	}
 };
